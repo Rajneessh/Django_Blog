@@ -1,0 +1,30 @@
+{% extends "blog/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <div class="text-center">
+        <h1> {{user}}'s to do List</h1>
+        <a href="{% url 'task-create' %}">Add Task</a>
+    </div>
+    <form class="text-center" method="GET">
+        <input type="text" name="search-area" value="{{search_input}}">
+        <input type="submit" value="Search">
+    </form>
+    {% for task in tasks %}
+    <table>
+        <div >
+            <div class="content-section">
+                <ul class="list-group">
+                    <li><a href="{% url 'task-detail' task.id%}">{{task.title}}&emsp14;&emsp14;<a class="btn btn-secondary btn-sm mt-1 mb-1"href="{% url 'task-update' task.id %}">Edit</a><a class="btn btn-danger btn-sm mt-1 mb-1"href="{% url 'task-delete' task.id %}">Delete</a></li>
+                    {%if task.complete == True%}
+                        <small class="d-flex justify-content-start text-info">Task Completed</small></li>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+        {% empty %}
+            <h6 class="content-section">Your To Do List is Empty</h6>
+    {%endfor%}
+    </table>
+</div>
+{% endblock content %}

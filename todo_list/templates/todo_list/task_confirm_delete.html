@@ -1,0 +1,17 @@
+{%extends 'blog/base.html' %}
+{%block content%}
+<form method="POST">
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-botom mb-4"><h1>Delete Task</h1>
+                </legend>
+                <h2>Are you sure you want to delete the task "{{task}}"</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Yes Delete !!!</button>
+                <a class="btn btn-outline-secondary" href="{%url 'tasks'%}">Cancel</a>
+            </div>
+        </form>
+{%endblock content %}
